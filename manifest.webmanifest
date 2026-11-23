@@ -1,0 +1,25 @@
+{
+  "id": "/",
+  "name": "Contabilitate privată 2",
+  "short_name": "Contabilitate 2",
+  "description": "Facturi, Lieferscheine, E-Rechnung, casă și contabilitate pentru firme mici din Germania și Austria. Datele rămân la tine.",
+  "lang": "ro",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f4f2",
+  "theme_color": "#B8234F",
+  "categories": ["finance", "business", "productivity"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "screenshots/telefon.png", "sizes": "412x915", "type": "image/png", "form_factor": "narrow", "label": "Facturi pe telefon" },
+    { "src": "screenshots/pc.png", "sizes": "1280x800", "type": "image/png", "form_factor": "wide", "label": "Contabilitate pe PC" }
+  ]
+}
