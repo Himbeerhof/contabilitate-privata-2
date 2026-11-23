@@ -109,11 +109,95 @@ input.den::-webkit-outer-spin-button,input.den::-webkit-inner-spin-button{-webki
 input.den{-moz-appearance:textfield;appearance:textfield}
 .ls-pick{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
 </style>
+<style id="aspect-nou">
+/* ===== Aspect nou: aceleași culori, mai multă claritate. Se poate scoate tot blocul fără să se strice nimic. ===== */
+:root{ --shadow:0 1px 2px rgba(40,20,20,.05),0 2px 8px rgba(40,20,20,.04); --shadow-h:0 2px 4px rgba(40,20,20,.06),0 8px 20px rgba(40,20,20,.08); --acc-h:#9e1d43; --ring:0 0 0 3px rgba(184,35,79,.22); }
+@media (prefers-color-scheme: dark){ :root{ --shadow:0 1px 2px rgba(0,0,0,.3); --shadow-h:0 4px 16px rgba(0,0,0,.45); --acc-h:#f27a9c; --ring:0 0 0 3px rgba(236,90,132,.3); } }
+html,body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--acc-soft);color:var(--ink)}
+/* antet */
+header.top{margin:4px 0 16px;flex-wrap:wrap;row-gap:8px}
+header.top h1{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:-.02em}
+header.top h1 .logo{width:34px;height:34px;border-radius:9px;box-shadow:var(--shadow);flex:none}
+.mode{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:4px 10px 4px 8px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mode::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+/* cifre: fiecare cu culoarea lui */
+.stats{gap:10px;margin-bottom:14px}
+.stat{position:relative;border-radius:14px;padding:12px 14px 13px;box-shadow:var(--shadow);overflow:hidden}
+.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent}
+#v-invoices .stat:first-child::before{background:var(--acc)}
+.stat .k{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.stat .v{font-size:19px;font-weight:800;letter-spacing:-.01em;margin-top:4px}
+.stat.warn::before{background:var(--warn)} .stat.warn .v{color:var(--warn)}
+.stat.alert::before{background:var(--acc)} .stat.alert{background:var(--acc-soft);border-color:transparent} .stat.alert .v{color:var(--acc)}
+@media (max-width:560px){ .stats{gap:7px} .stat{padding:10px 10px 11px 12px} .stat .k{font-size:10.5px} .stats .v{font-size:15.5px} }
+/* butoane */
+.btn{border-radius:11px;transition:background .15s,border-color .15s,box-shadow .15s,transform .05s;box-shadow:var(--shadow)}
+.btn:hover{border-color:var(--muted)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{box-shadow:0 2px 6px rgba(184,35,79,.28)}
+.btn.primary:hover{background:var(--acc-h);border-color:var(--acc-h)}
+.btn.ghost{box-shadow:none}
+.btn:focus-visible,nav.tabs button:focus-visible,.item:focus-visible,.seg button:focus-visible{outline:none;box-shadow:var(--ring)}
+input:focus,select:focus,textarea:focus{box-shadow:var(--ring)}
+input[type=text],input[type=email],input[type=number],input[type=date],input[type=month],input[type=search],select,textarea{border-radius:11px;padding:10px 12px;transition:border-color .15s,box-shadow .15s}
+/* rândul „poză” arată ca o zonă separată, ca să nu concureze cu butonul principal */
+.row:has(> .scan-lbl){background:transparent;border:1.5px dashed var(--line);border-radius:14px;padding:8px}
+.row:has(> .scan-lbl) .hint{padding:0 4px}
+.scan-lbl{box-shadow:none}
+#bk-vat,#bk-datev,#bk-lock{white-space:normal;line-height:1.2;padding-left:8px;padding-right:8px}
+/* liste: dungă colorată după stare */
+.list{gap:9px}
+.item{position:relative;border-radius:14px;padding:13px 15px 13px 17px;box-shadow:var(--shadow);transition:box-shadow .15s,transform .15s,border-color .15s;overflow:hidden}
+.item:hover{box-shadow:var(--shadow-h);border-color:var(--muted)}
+.item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent}
+.item:has(.pill.open)::before{background:var(--warn)}
+.item:has(.pill.over)::before{background:var(--acc)}
+.item:has(.pill.paid)::before{background:var(--ok)}
+.item:has(.pill.cancelled){opacity:.7}
+.item .t{font-weight:700;letter-spacing:-.005em}
+.item .amt{font-size:16px}
+.pill{padding:2px 9px;letter-spacing:.01em}
+.empty{border:1.5px dashed var(--line);border-radius:14px;background:transparent}
+h2{font-size:12.5px;font-weight:700;letter-spacing:.07em;margin:22px 0 9px}
+.card{border-radius:16px;box-shadow:var(--shadow)}
+/* ferestre */
+.overlay{background:rgba(20,12,14,.5);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);animation:fadeIn .15s ease-out}
+.sheet{box-shadow:0 -8px 40px rgba(0,0,0,.2);animation:slideUp .2s ease-out}
+.sheet h3{font-size:19px;letter-spacing:-.01em}
+@keyframes fadeIn{from{opacity:0}} @keyframes slideUp{from{transform:translateY(24px);opacity:.6}}
+@media (prefers-reduced-motion:reduce){ .overlay,.sheet{animation:none} .btn,.item{transition:none} }
+.toast{border-radius:12px;font-weight:600}
+/* bara de jos: etichete întregi pe telefon, indicator în jurul iconiței */
+nav.tabs{box-shadow:0 -2px 12px rgba(0,0,0,.05);padding-top:5px}
+nav.tabs button{font-size:10.5px;letter-spacing:-.1px;padding:4px 1px 6px;background:none!important;text-overflow:clip}
+nav.tabs svg{width:52px;height:28px;padding:3px 15px;border-radius:99px;margin-bottom:3px;transition:background .15s}
+nav.tabs button.on svg{background:var(--acc-soft)}
+nav.tabs button.on{font-weight:800}
+html[lang=de] nav.tabs button{font-size:9.8px}
+/* PC: meniul trece în stânga */
+@media (min-width:1000px){
+  nav.tabs{top:0;bottom:0;right:auto;width:216px;flex-direction:column;justify-content:flex-start;gap:4px;padding:132px 12px 16px;border-top:0;border-right:1px solid var(--line);box-shadow:none}
+  nav.tabs button{flex:none;max-width:none;display:flex;align-items:center;gap:12px;padding:10px 14px;font-size:14px!important;letter-spacing:0;border-radius:12px;text-align:left}
+  nav.tabs button:hover{background:var(--bg)!important;color:var(--ink)}
+  nav.tabs button.on{background:var(--acc-soft)!important}
+  nav.tabs svg{width:22px;height:22px;padding:0;margin:0;background:none!important}
+  .wrap{padding:22px 28px 48px;margin-left:216px;max-width:none}
+  .wrap > *{max-width:900px;margin-left:auto;margin-right:auto}
+  header.top{position:fixed;top:0;left:0;width:216px;margin:0;padding:22px 16px;z-index:21;flex-direction:column;align-items:flex-start;gap:8px}
+  header.top h1{font-size:17px;line-height:1.15;display:grid;grid-template-columns:34px auto;column-gap:10px}
+  header.top h1 .logo{grid-row:1/3}
+  header.top h1 span{grid-column:2}
+  .mode{max-width:100%;font-size:11px}
+  .sticky-actions{bottom:0}
+  .toast{bottom:28px;left:calc(50% + 108px)}
+}
+</style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <h1>Contabilitate <span>privată</span></h1>
+    <h1><img src="icon-192.png" alt="" class="logo">Contabilitate <span>privată</span></h1>
     <div class="mode" id="mode"></div>
   </header>
   <div id="banner" class="banner hidden"></div>
@@ -3072,6 +3156,7 @@ function renderInvoices() {
   inYear.forEach(i => { const s = invState(i); if (s === "cancelled") return; const g = calcInv(i).gross; total += g; if (s === "open" || s === "over") open += g; if (s === "over") over += g; });
   $("#st-year-k").textContent = year === "all" ? "Facturat total" : "Facturat " + year;
   $("#st-total").textContent = money(total); $("#st-open").textContent = money(open); $("#st-over").textContent = money(over);
+  $("#st-open").parentNode.classList.toggle("warn", open > 0); $("#st-over").parentNode.classList.toggle("alert", over > 0);
   const list = inYear.filter(i => {
     if (st && invState(i) !== st && !(st === "open" && invState(i) === "over")) return false;
     if (q && !((i.number || "") + " " + (i.customer?.name || "")).toLowerCase().includes(q)) return false;
